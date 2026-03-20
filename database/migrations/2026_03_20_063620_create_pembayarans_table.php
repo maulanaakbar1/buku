@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_id')->constrained()->cascadeOnDelete();
+            $table->string('metode');
+            $table->string('bukti_transfer')->nullable();
+            $table->enum('status_verifikasi', ['pending', 'diterima', 'ditolak'])->default('pending');
             $table->timestamps();
         });
     }

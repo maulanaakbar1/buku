@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('bukus', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('kategori_id')->constrained('kategoris')->cascadeOnDelete();
+            $table->string('judul');
+            $table->string('penulis');
+            $table->string('penerbit')->nullable();
+            $table->integer('harga');
+            $table->integer('stok')->default(0);
+            $table->string('cover')->nullable();
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }
